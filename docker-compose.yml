@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  spring-boot-app:
+    image: hp_management  # Replace with your Spring Boot Docker image name
+    ports:
+      - "9090:9090"  # Map Spring Boot app port
+    networks:
+      - mynetwork
+
+  nginx:
+    build:
+      context: ./nginx  # Path to the Nginx directory
+    ports:
+      - "80:80"  # Expose Nginx on port 80
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    driver: bridge
